@@ -1,0 +1,18 @@
+@use '@angular/material' as mat;
+
+:root {
+  @include mat.snack-bar-overrides((
+    container-color: #323232,
+    supporting-text-color: #fff,
+    button-color: #ffca28,
+    container-shape: 8px,
+  ));
+  
+  .mat-mdc-snack-bar-container 
+  .mdc-snackbar__surface {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Global background color for the application */
+  --hb-background: #f5f5f5;
+}

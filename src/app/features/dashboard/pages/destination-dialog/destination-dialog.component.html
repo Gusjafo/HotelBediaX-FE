@@ -1,0 +1,60 @@
+@if (loading) {
+<div class="fixed inset-0 flex items-center justify-center z-50">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+}
+<h2 mat-dialog-title class="text-center">
+    {{ data.mode === 'create' ? 'New Destination' : data.mode === 'edit' ? 'Edit Destination' : 'Destination Detail' }}
+</h2>
+<div mat-dialog-content class="relative flex flex-col items-center w-full space-y-4">
+    <form [formGroup]="form" class="w-full space-y-4">
+        <mat-form-field appearance="outline" class="w-full mt-2">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+            @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+            <mat-error>
+                Name is required
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description" />
+            @if (form.controls.description.touched && form.controls.description.hasError('required')) {
+            <mat-error>
+                Description is required
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="countryCode" />
+            @if (form.controls.countryCode.touched && form.controls.countryCode.hasError('required')) {
+            <mat-error>
+                Country code is required
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type">
+                @for (option of typeOptions; track $index) {
+                <mat-option [value]="option">
+                    {{ option }}
+                </mat-option>
+                }
+            </mat-select>
+            @if (form.controls.type.touched && form.controls.type.hasError('required')) {
+            <mat-error>
+                Type is required
+            </mat-error>
+            }
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="flex justify-end w-full pt-2">
+    <button mat-button (click)="close()">{{ isView ? 'Close' : 'Cancel' }}</button>
+    @if (!isView) {
+    <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid || loading">Save</button>
+    }
+</div>

@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mdc-notched-outline__notch {
+    border-right: none;
+}
+
+button,
+.mat-mdc-button-base {
+    padding: 0.5rem 1rem;
+}
