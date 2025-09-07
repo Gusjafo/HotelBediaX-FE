@@ -6,24 +6,12 @@
             <mat-label class="text-sm md:text-base">Email</mat-label>
             <input matInput type="email" formControlName="email" required autocomplete="section-red email"
                 class="text-sm md:text-base" />
-            @if (email?.hasError('required')) {
-            <mat-error>Email is required</mat-error>
-            }
-            @if (email?.hasError('email')) {
-            <mat-error>Invalid email format</mat-error>
-            }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full">
             <mat-label class="text-sm md:text-base">Password</mat-label>
             <input matInput type="password" formControlName="password" required
                 autocomplete="section-red current-password" class="text-sm md:text-base" />
-            @if (password?.hasError('required')) {
-            <mat-error>Password is required</mat-error>
-            }
-            @if (password?.hasError('minlength')) {
-            <mat-error>Password must be at least 6 characters</mat-error>
-            }
         </mat-form-field>
 
         <button mat-flat-button color="primary" class="w-full text-sm md:text-base" type="submit"
