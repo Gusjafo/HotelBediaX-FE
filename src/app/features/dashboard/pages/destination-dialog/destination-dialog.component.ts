@@ -43,7 +43,7 @@ export class DestinationDialogComponent implements OnInit {
         id: [0],
         name: ['', Validators.required],
         description: ['', Validators.required],
-        countryCode: ['', Validators.required],
+        countryCode: ['', [Validators.required, Validators.maxLength(2), Validators.minLength(2)]],
         type: ['', Validators.required]
     });
 

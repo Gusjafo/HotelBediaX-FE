@@ -29,9 +29,14 @@
         <mat-form-field appearance="outline" class="w-full">
             <mat-label>Country</mat-label>
             <input matInput formControlName="countryCode" />
-            @if (form.controls.countryCode.touched && form.controls.countryCode.hasError('required')) {
+            @if (form.controls.countryCode.touched && form.controls.countryCode.hasError('maxlength')) {
             <mat-error>
-                Country code is required
+                It must have 2 characters
+            </mat-error>
+            }
+            @if (form.controls.countryCode.touched && form.controls.countryCode.hasError('minlength')) {
+            <mat-error>
+                It must have 2 characters
             </mat-error>
             }
         </mat-form-field>
