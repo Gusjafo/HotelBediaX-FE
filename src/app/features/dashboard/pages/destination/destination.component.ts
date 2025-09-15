@@ -99,6 +99,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
             .subscribe(res => {
                 this.data = res.content;
                 this.total = res.totalElements;
+                this.sortData();
             });
     }
 
@@ -106,8 +107,31 @@ export class DestinationComponent implements OnInit, OnDestroy {
         this.sortActive = event.active;
         this.sortDirection = event.direction === '' ? 'asc' : event.direction;
 
-        this.loadData();
+        this.sortData();
     }
+
+    private sortData() {
+        if (!this.sortActive) {
+            return;
+        }
+
+        this.data = [...this.data].sort((a: any, b: any) => {
+            const valueA = a[this.sortActive];
+            const valueB = b[this.sortActive];
+
+            let comparatorResult = 0;
+            if (valueA != null && valueB != null) {
+                if (typeof valueA === 'string' && typeof valueB === 'string') {
+                    comparatorResult = valueA.localeCompare(valueB);
+                } else {
+                    comparatorResult = valueA < valueB ? -1 : valueA > valueB ? 1 : 0;
+                }
+            }
+
+            return this.sortDirection === 'asc' ? comparatorResult : -comparatorResult;
+        });
+    }
+
 
     newDestination() {
         const dialogRef = this.dialog.open(DestinationDialogComponent, {
